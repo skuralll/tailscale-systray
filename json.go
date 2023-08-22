@@ -53,6 +53,7 @@ type RawMachine struct {
 	DNSName      string   `json:"DNSName"`
 	HostName     string   `json:"HostName"`
 	TailscaleIPs []string `json:"TailscaleIPs"`
+	Online       bool     `json:"Online"`
 }
 
 func (rm RawMachine) ToMachine(dnsSuffix string) Machine {

@@ -173,7 +173,14 @@ func onReady() {
 
 			mThisDevice.SetTitle(fmt.Sprintf("This device: %s (%s)", status.Self.DisplayName.String(), myIP))
 
-			for _, peer := range status.Peers {
+			peers := map[string]Machine{}
+			for k, peer := range status.Peers {
+				if peer.Online {
+					peers[k] = peer
+				}
+			}
+
+			for _, peer := range peers {
 				ip := peer.TailscaleIPs[0]
 				peerName := peer.DisplayName
 				title := peerName.String()
